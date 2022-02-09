@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExampleBehaviorScript : MonoBehaviour
 {
-    void update()
+    void Update()
     {
-        if (Input.getkeydown(keycode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            getcomponent<renderer>().material.color = color.red;
+            GetComponent<Renderer> ().material.color = Color.red;
         }
-        if (Input.getkeydown(keycode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            getcomponent<renderer>().material.color = color.red;
+            GetComponent<Renderer>().material.color = Color.green;
         }
-        if (Input.getkeydown(keycode.B))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            getcomponent<renderer>().material.color = color.red;
+            GetComponent<Renderer>().material.color = Color.blue;
         }
     }
 }
