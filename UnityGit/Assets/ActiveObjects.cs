@@ -6,6 +6,6 @@ public class ActiveObjects : MonoBehaviour
 {
     void Start ()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }
