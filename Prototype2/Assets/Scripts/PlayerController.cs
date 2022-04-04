@@ -28,8 +28,5 @@ public class PlayerController : MonoBehaviour
             //Launch a projectile from the player when pressing space
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
-
-
-
     }
 }
