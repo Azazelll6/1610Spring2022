@@ -42,7 +42,10 @@ public class PlayerController : MonoBehaviour
             //Vertical movement along x axis
             transform.Translate(Vector3.forward * horizontalInput * vertMvSpeed);
         }
-        //Stop at top 
+        
+        
+        
+        /*//Stop at top 
         if (transform.position.z > zTopRange)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, zTopRange);
@@ -61,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
-        }
+        }*/
     }
 
     private void OnCollisionEnter(Collision other)
