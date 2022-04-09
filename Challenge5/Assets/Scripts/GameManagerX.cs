@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManagerX : MonoBehaviour
 {
@@ -11,19 +13,21 @@ public class GameManagerX : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
-    public Button restartButton; 
+    public Button restartButton;
+    public float timeRemaining = 60;
 
     public List<GameObject> targetPrefabs;
 
     private int score;
-    private int time;
     private float spawnRate = 1.5f;
     public bool isGameActive;
 
-    private float spaceBetweenSquares = 2.5f; 
+    private float spaceBetweenSquares = 2.5f;
     private float minValueX = -3.75f; //  x value of the center of the left-most square
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
-    
+
+    public bool timerIsRunning = false;
+
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
     public void StartGame(int difficulty)
     {
@@ -31,10 +35,27 @@ public class GameManagerX : MonoBehaviour
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
-        time = 60;
         UpdateScore(0);
-        UpdateTime(60);
+        timerIsRunning = true;
         titleScreen.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                GameOver();
+                timeRemaining = 0;
+                timerIsRunning = false;
+            }
+        }
     }
 
     // While game is active spawn a random target
@@ -49,7 +70,7 @@ public class GameManagerX : MonoBehaviour
             {
                 Instantiate(targetPrefabs[index], RandomSpawnPosition(), targetPrefabs[index].transform.rotation);
             }
-            
+
         }
     }
 
@@ -76,15 +97,20 @@ public class GameManagerX : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
-    public void UpdateTime(int timeToAdd)
+
+    public void DisplayTime(float timeToDisplay)
     {
-        time -= timeToAdd;
-        timeText.text = "Time: " + time;
+        timeToDisplay += 1;
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        timeText.text = "Time Remaining: " + (string.Format("{0:00}:{1:00}", minutes, seconds));
     }
-    
+
     // Stop game, bring up game over text and restart button
     public void GameOver()
     {
+        timerIsRunning = false;
+        DisplayTime(-1);
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         isGameActive = false;
@@ -95,5 +121,4 @@ public class GameManagerX : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }
