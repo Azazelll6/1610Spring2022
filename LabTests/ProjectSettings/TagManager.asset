@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Karen
   - Wall
+  - PowerUp
   layers:
   - Default
   - TransparentFX
