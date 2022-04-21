@@ -124,6 +124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimplePeople_Woman_Waitress_White
       objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: fe520ce6663e67348a964bf7b4318e26, type: 3}
+      propertyPath: m_TagString
+      value: Karen
+      objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: fe520ce6663e67348a964bf7b4318e26, type: 3}
       propertyPath: m_RootOrder
       value: 0

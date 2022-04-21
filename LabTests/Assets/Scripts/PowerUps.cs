@@ -5,11 +5,23 @@ using UnityEngine.Events;
 
 public class PowerUps : MonoBehaviour
 {
-    [SerializeField] private GameObject powIndicator;
+    [SerializeField] private GameObject powIndicatorSpd;
+    [SerializeField] private GameObject powIndicatorDmg;
+    [SerializeField] private GameObject powIndicatorSlow;
     
-    public void PowerupIncrease()
+    public void PowerupSpd()
     {
-        powIndicator.SetActive(true);
+        powIndicatorSpd.SetActive(true);
+        Debug.Log("Increase Atk and FireRate");
+    }
+    public void PowerupDmg()
+    { 
+        powIndicatorDmg.SetActive(true);
+        Debug.Log("Increase Atk and FireRate"); 
+    } 
+    public void PowerupSlow() 
+    {
+        powIndicatorSlow.SetActive(true);
         Debug.Log("Increase Atk and FireRate");
     }
 }
