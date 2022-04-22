@@ -124,6 +124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleFarmer_Woman_01_Brown
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3f69bcf5a1514c458ed5c9b96f28e34, type: 3}
+      propertyPath: m_TagString
+      value: Karen
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3f69bcf5a1514c458ed5c9b96f28e34, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -187,9 +191,9 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7021267996290737064}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9a87663786e85854b905c576cd8baed1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.03166, z: 0.6301594}
+  m_Size: {x: 2.1, y: 3, z: 0.6}
   m_Center: {x: 0, y: 1.5098009, z: 0.010804653}
