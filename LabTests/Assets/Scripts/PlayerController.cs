@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private LayerMask ground;
+    private Camera mainCamera;
+    private Rigidbody playerRb;
+    private Vector3 mvVelocity;
+    private Vector3 mvInput;
+    private Vector3 skew;
+    
     public float verticalInput;
     public float horizontalInput;
 
     public bool gameOver = false;
-    public float horiMvSpeed = .03f;
-    public float vertMvSpeed = .05f;
-    public float xRange = 27f;
-    public float zTopRange = 33; 
-    public float zBotRange = 25;
+    public float mvSpeed = 10f;
+    
 
 
     /* Code for later use if needed
@@ -25,48 +31,53 @@ public class PlayerController : MonoBehaviour
     */
     void Start()
     {
-        //playerRb = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();
         //playerAudio = GetComponent<AudioSource>();
-
+        mainCamera = FindObjectOfType<Camera>();
     }
 
     void Update()
     {
-        verticalInput = Input.GetAxis("Horizontal");
-        horizontalInput = Input.GetAxis("Vertical");
-        // If game over no more movement
+        //Creates a line to screen
+        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        //Defines a new vertical plane the line will hit
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+        
+        //if a ray (being the cameraray) intersects the plane,
+        //output the value between the camera and the plane as raylength
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            //
+            Vector3 faceMouse = cameraRay.GetPoint(rayLength);
+            //Draw the rayLength
+            Debug.DrawLine(cameraRay.origin, faceMouse, Color.blue);
+            
+            //Get the player to look at the mouse and is keeps them up straight
+            transform.LookAt(new Vector3(faceMouse.x,transform.position.y,faceMouse.z));
+        }
+        
+        // If game over, no more movement
         if (!gameOver)
         {
-            //Horizontal movement along z axis
-            transform.Translate(Vector3.right * verticalInput * horiMvSpeed);
-            //Vertical movement along x axis
-            transform.Translate(Vector3.forward * horizontalInput * vertMvSpeed);
+            Move(); 
         }
-        
-        
-        
-        /*//Stop at top 
-        if (transform.position.z > zTopRange)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zTopRange);
-        }
-        //Stop at bottom
-        if (transform.position.z < -zBotRange)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -zBotRange);
-        }
-        //Stop at right
-        if (transform.position.x > xRange)
-        {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
-        }
-        //Stop at left
-        if (transform.position.x < -xRange)
-        {
-            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
-        }*/
     }
 
+    private void FixedUpdate()
+    {
+        playerRb.velocity = mvVelocity;
+    }
+
+    private void Move()
+    {
+        //Raw is immediate 0 to 1, without Raw it is gradual
+        mvInput = new Vector3(Input.GetAxisRaw("Horizontal"),0f,Input.GetAxisRaw("Vertical"));
+        //Skews the input on the vertical and hoizontal inputs by 45 degrees, giving the iso game an up down feel to movement
+        skew = Quaternion.Euler(new Vector3(0, 45, 0)) * mvInput;
+        
+        mvVelocity = skew * mvSpeed;
+    }
     private void OnCollisionEnter(Collision other)
     {
         // if player collides with Karen, die and set gameOver to true
@@ -81,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
     }
 }
+
 /*
     public GameObject projectilePrefab;
         if (Input.GetKeyDown(KeyCode.Space))

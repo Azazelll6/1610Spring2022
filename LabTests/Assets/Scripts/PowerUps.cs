@@ -17,11 +17,11 @@ public class PowerUps : MonoBehaviour
     public void PowerupDmg()
     { 
         powIndicatorDmg.SetActive(true);
-        Debug.Log("Increase Atk and FireRate"); 
+        Debug.Log("Increase Dmg"); 
     } 
     public void PowerupSlow() 
     {
         powIndicatorSlow.SetActive(true);
-        Debug.Log("Increase Atk and FireRate");
+        Debug.Log("Start slow motion");
     }
 }
