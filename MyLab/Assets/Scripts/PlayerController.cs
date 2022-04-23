@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
 
     public bool gameOver = false;
-    public float mvSpeed = 10f;
-    
+    public float mvSpeed;
 
+    public WeaponController weaponController;
 
     /* Code for later use if needed
     private Rigidbody playerRb;
@@ -31,9 +31,11 @@ public class PlayerController : MonoBehaviour
     */
     void Start()
     {
+        Time.timeScale = 1.0f;
         playerRb = GetComponent<Rigidbody>();
         //playerAudio = GetComponent<AudioSource>();
         mainCamera = FindObjectOfType<Camera>();
+        
     }
 
     void Update()
@@ -60,7 +62,19 @@ public class PlayerController : MonoBehaviour
         // If game over, no more movement
         if (!gameOver)
         {
-            Move(); 
+            Move();
+            //if LMB click fire weapon
+            if (Input.GetMouseButtonDown(0))
+            {
+                //changes isFiring bool in WeaponController.cs to true
+                weaponController.isFiring = true;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                //changes isFiring bool in WeaponController.cs to false
+                weaponController.isFiring = false;
+            }
         }
     }
 
