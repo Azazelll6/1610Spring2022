@@ -7,6 +7,7 @@ TagManager:
   - Karen
   - Wall
   - PowerUp
+  - Weapon
   layers:
   - Default
   - TransparentFX

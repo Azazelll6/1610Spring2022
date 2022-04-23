@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2102655299924933753}
   m_Layer: 0
   m_Name: Potion_01
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PowerUps, Assembly-CSharp
-        m_MethodName: PowerupSpd
+        m_MethodName: PowerUpSpd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

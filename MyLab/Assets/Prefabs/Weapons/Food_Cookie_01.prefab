@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 4632523263152551917}
-  - component: {fileID: 1503206895951089985}
+  - component: {fileID: 8125585557187860590}
   m_Layer: 0
   m_Name: Food_Cookie_01
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,17 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3bc435155ebcc4f9a4760b3ab64853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spd: 0
---- !u!114 &1503206895951089985
-MonoBehaviour:
+  spd: 1
+  ammoTTL: 2
+  dmgToGive: 1
+--- !u!65 &8125585557187860590
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 13400000, guid: 9a87663786e85854b905c576cd8baed1, type: 2}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3bc435155ebcc4f9a4760b3ab64853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spd: 0
+  serializedVersion: 2
+  m_Size: {x: 0.52475095, y: 0.06719126, z: 0.52475107}
+  m_Center: {x: 0, y: -0.0000000018626451, z: -0.000000074505806}

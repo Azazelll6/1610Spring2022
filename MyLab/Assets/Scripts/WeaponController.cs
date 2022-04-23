@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
     //private GameManager gameManager;
     public AmmoController ammo;
 
-    public float fireRate;
+    public float reloadTime;
     public float shotCounter;
     public float ammoSpd;
 
@@ -19,7 +19,7 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1.0f;
+
         //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
     }
@@ -33,16 +33,19 @@ public class WeaponController : MonoBehaviour
             shotCounter -= Time.fixedDeltaTime;
             if (shotCounter <= 0)
             {
-                shotCounter = fireRate;//at end of counter reset to the fire rate value for next shot
+                shotCounter = reloadTime;//at end of counter reset to the fire rate value for next shot
                 //Create bullet at the correct spawn point as a AmmoController with the correct
                 //properties instead of a GameObject
                 AmmoController newAmmo = Instantiate(ammo, fireSpawn.position, fireSpawn.rotation) as AmmoController;
                 newAmmo.spd = ammoSpd;
             }
-            //setting fire rate to be ready to fire if we haven't fired since FR hit 0 
-            else
+        }
+        //setting fire rate to be ready to fire if we haven't fired since FR hit 0
+        else if(!isFiring)
+        {
+            if (shotCounter > 0)
             {
-                shotCounter = 0;
+                shotCounter -= Time.fixedDeltaTime;
             }
         }
     }

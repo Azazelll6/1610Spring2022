@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
 
     public bool gameOver = false;
-    public float mvSpeed;
+    public float moveSpeed;
 
     public WeaponController weaponController;
 
@@ -46,24 +42,25 @@ public class PlayerController : MonoBehaviour
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
         
-        //if a ray (being the cameraray) intersects the plane,
-        //output the value between the camera and the plane as raylength
-        if (groundPlane.Raycast(cameraRay, out rayLength))
-        {
-            //
-            Vector3 faceMouse = cameraRay.GetPoint(rayLength);
-            //Draw the rayLength
-            Debug.DrawLine(cameraRay.origin, faceMouse, Color.blue);
-            
-            //Get the player to look at the mouse and is keeps them up straight
-            transform.LookAt(new Vector3(faceMouse.x,transform.position.y,faceMouse.z));
-        }
         
         // If game over, no more movement
         if (!gameOver)
         {
+            //if a ray (being the cameraray) intersects the plane,
+            //output the value between the camera and the plane as raylength
+            if (groundPlane.Raycast(cameraRay, out rayLength))
+            {
+                Vector3 faceMouse = cameraRay.GetPoint(rayLength);
+                //Draw the rayLength
+                Debug.DrawLine(cameraRay.origin, faceMouse, Color.blue);
+            
+                //Get the player to look at the mouse and is keeps them up straight
+                transform.LookAt(new Vector3(faceMouse.x,transform.position.y,faceMouse.z));
+            }
+        
+       
             Move();
-            //if LMB click fire weapon
+            //if LMB click/hold fire weapon
             if (Input.GetMouseButtonDown(0))
             {
                 //changes isFiring bool in WeaponController.cs to true
@@ -90,7 +87,7 @@ public class PlayerController : MonoBehaviour
         //Skews the input on the vertical and hoizontal inputs by 45 degrees, giving the iso game an up down feel to movement
         skew = Quaternion.Euler(new Vector3(0, 45, 0)) * mvInput;
         
-        mvVelocity = skew * mvSpeed;
+        mvVelocity = skew * moveSpeed;
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -99,9 +96,9 @@ public class PlayerController : MonoBehaviour
         {
             //Particle.Play();
             //playerAudio.PlayOneShot(Sound, 1.0f);
-            gameOver = true;
-            Debug.Log("Game Over!");
-            Destroy(other.gameObject);
+            //gameOver = true;
+            //Debug.Log("Game Over!");
+            //Destroy(other.gameObject);
         }
 
     }

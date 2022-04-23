@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 33814857596305084}
   - component: {fileID: 23357046182606914}
   - component: {fileID: 4877295114154741477}
+  - component: {fileID: 8178985071716875710}
   m_Layer: 0
   m_Name: Food_Banana_01
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,3 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spd: 0
+  ammoTTL: 0
+  dmgToGive: 0
+--- !u!65 &8178985071716875710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180137445707430}
+  m_Material: {fileID: 13400000, guid: 9a87663786e85854b905c576cd8baed1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.50622404, y: 0.47573793, z: 0.4844519}
+  m_Center: {x: 0, y: 0.009565257, z: 0.021385126}

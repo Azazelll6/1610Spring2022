@@ -9,17 +9,17 @@ public class PowerUps : MonoBehaviour
     [SerializeField] private GameObject powIndicatorDmg;
     [SerializeField] private GameObject powIndicatorSlow;
     
-    public void PowerupSpd()
+    public void PowerUpSpd()
     {
         powIndicatorSpd.SetActive(true);
         Debug.Log("Increase Atk and FireRate");
     }
-    public void PowerupDmg()
+    public void PowerUpDmg()
     { 
         powIndicatorDmg.SetActive(true);
         Debug.Log("Increase Dmg"); 
     } 
-    public void PowerupSlow() 
+    public void PowerUpPierce() 
     {
         powIndicatorSlow.SetActive(true);
         Debug.Log("Start slow motion");
