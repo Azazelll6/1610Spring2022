@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1228892164443087832}
   - component: {fileID: 7175177918075698660}
   - component: {fileID: 8228765466901842529}
+  - component: {fileID: 647738644}
   m_Layer: 0
   m_Name: Crate_Question_01 1
   m_TagString: PowerUp
@@ -123,3 +124,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9964992, y: 0.99649537, z: 0.9964957}
   m_Center: {x: 0.0000001937151, y: 0, z: -0.000000014901161}
+--- !u!114 &647738644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250166804002273394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b404e29e39ae43342aa0602c1ada6c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 30
+  moveSpeed: 5

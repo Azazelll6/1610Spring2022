@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23583631986834334}
   - component: {fileID: 2997684389426837799}
   - component: {fileID: 1900138029}
+  - component: {fileID: 162231292}
   m_Layer: 0
   m_Name: Skull_01
   m_TagString: PowerUp
@@ -123,3 +124,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.42912176, y: 0.5520757, z: 0.46483076}
   m_Center: {x: 0, y: -0.02673658, z: -0.023982435}
+--- !u!114 &162231292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758002909022086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b404e29e39ae43342aa0602c1ada6c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 30
+  moveSpeed: 5
