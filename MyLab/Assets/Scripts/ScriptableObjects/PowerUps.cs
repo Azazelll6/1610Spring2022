@@ -7,9 +7,14 @@ using UnityEngine.Events;
 public class PowerUps : ScriptableObject
 {
     public string powFunction;
+    public float duration;
     public float moveSpeed;
     public float fireRate;
     public float heal;
     public float healthBoost;
     public float damage;
+    public float reload;
+    public float knockBack;
+    public float ammoSpeed;
+    public bool pierce;
 }

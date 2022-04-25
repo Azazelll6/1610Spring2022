@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Invoke(powUpTrigger);
+            powUpTrigger.Invoke();
         }
         if (other.CompareTag("Karen"))
         {

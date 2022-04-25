@@ -17,5 +17,5 @@ MonoBehaviour:
   speed: 10
   ammoSpeed: 20
   ammoLife: 1.5
-  reloadTime: 3
+  reloadTime: 5
   bounceDistance: 50

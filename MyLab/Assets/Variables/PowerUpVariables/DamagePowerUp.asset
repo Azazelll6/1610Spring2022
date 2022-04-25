@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c61a754d978ab14d8a4338a6595195d, type: 3}
-  m_Name: PowerUps
+  m_Name: DamagePowerUp
   m_EditorClassIdentifier: 
   powFunction: Set Damage
   moveSpeed: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b404e29e39ae43342aa0602c1ada6c78, type: 3}
-  m_Name: TestSpin
+  m_Name: DefaultSpinAndBounce
   m_EditorClassIdentifier: 
   spinSpeed: 50
   bounceAmplitude: 0.3
