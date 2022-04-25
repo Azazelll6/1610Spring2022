@@ -14,5 +14,10 @@ public class PowTriggerEvents : MonoBehaviour
         {
             powUpTrigger.Invoke();
         }
+        if (other.CompareTag("Karen"))
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

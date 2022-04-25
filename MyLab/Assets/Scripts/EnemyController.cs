@@ -6,14 +6,19 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private Rigidbody enemyRB;
-    public float moveSpeed;
+    private float moveSpeed;
+    private float takenKnockBack;
 
-    public PlayerController player;
+    private PlayerController player;
+    public EnemyData enemyData;
     void Start()
     {
         enemyRB = GetComponent<Rigidbody>();
         //give reference to the player game object
         player = FindObjectOfType<PlayerController>();
+
+        moveSpeed = enemyData.speed;
+        takenKnockBack = enemyData.bounceDistance;
     }
 
     private void FixedUpdate()
