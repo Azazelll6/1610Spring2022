@@ -96,10 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8305465676699131286, guid: fc01a3bb589cebc4aa10892db165243b, type: 3}
+  ammoPrefab: []
   spd: 1
-  ammoTTL: 2
-  dmgToGive: 1
-  knockStrength: 100
+  playerData: {fileID: 11400000, guid: e057b03640d92bc46995685dcc28f0ec, type: 2}
 --- !u!65 &8125585557187860590
 BoxCollider:
   m_ObjectHideFlags: 0

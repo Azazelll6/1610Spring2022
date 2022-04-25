@@ -8,30 +8,29 @@ public class PlayerController : MonoBehaviour
     private Vector3 mvVelocity;
     private Vector3 mvInput;
     private Vector3 skew;
+    private float moveSpeed;
+    private int currentHealth;
     
-    public float verticalInput;
-    public float horizontalInput;
-
     public bool gameOver = false;
-    public float moveSpeed;
 
     public WeaponController weaponController;
+    public PlayerData playerData;
 
-    /* Code for later use if needed
-    private Rigidbody playerRb;
-    public ParticleSystem eParticle;
     
-    private AudioSource playerAudio;
+    //public ParticleSystem eParticle;
+    //private AudioSource playerAudio;
+    //public AudioClip Sound;
     
-    public AudioClip Sound;
-    */
     void Start()
     {
-        Time.timeScale = 1.0f;
+        //define current health to public for initial spawn and private health for when just that enemy obj hits 0
+        currentHealth = playerData.health;
+        moveSpeed = playerData.speed;
+        
+        
         playerRb = GetComponent<Rigidbody>();
         //playerAudio = GetComponent<AudioSource>();
         mainCamera = FindObjectOfType<Camera>();
-        
     }
 
     void Update()
@@ -73,6 +72,10 @@ public class PlayerController : MonoBehaviour
                 weaponController.isFiring = false;
             }
         }
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Game Over");
+        }
     }
 
     private void FixedUpdate()
@@ -102,16 +105,12 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    //when the player is hit and takes damage take that damage from their health
+    public void DmgPlayer(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+    }
 }
-
-/*
-    public GameObject projectilePrefab;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Launch a projectile from the player when pressing space
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        }
-*/
 
 
 

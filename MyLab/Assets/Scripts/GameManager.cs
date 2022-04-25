@@ -6,10 +6,28 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
-public class GameManagerX : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public GameObject[] powerUps;
+    public List<EnemyController> enemyController = new List<EnemyController>();
+    [SerializeField] private UnityEvent powUpTrigger;
     
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //Invoke(powUpTrigger);
+        }
+        if (other.CompareTag("Karen"))
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+    
+    /*
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gameOverText;
@@ -121,5 +139,5 @@ public class GameManagerX : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    }*/
 }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33746993512943424}
   - component: {fileID: 23583631986834334}
   - component: {fileID: 1900138029}
-  - component: {fileID: 2997684389426837799}
+  - component: {fileID: 7672583492797009417}
   m_Layer: 0
-  m_Name: Skull_01
+  m_Name: DamageSkull
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.42912176, y: 0.5520757, z: 0.46483076}
   m_Center: {x: 0, y: -0.02673658, z: -0.023982435}
---- !u!114 &2997684389426837799
+--- !u!114 &7672583492797009417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,21 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758002909022086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf5d6811c045fd4ea604fde89346f83, type: 3}
+  m_Script: {fileID: 11500000, guid: c27e5b4ce95d9c2419ccdcb4f28f6789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powUpTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PowerUps, Assembly-CSharp
-        m_MethodName: PowerUpDmg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  powIndicator: {fileID: 5312682421964395313, guid: 923deea38dc6a8843b15db7638919c1e, type: 3}
+  powerUp: {fileID: 11400000, guid: 12063f3a717a52d4591445acda2851e6, type: 2}
+  spinAndBounce: {fileID: 11400000, guid: 63f585e1e278ad34292740b8484beb50, type: 2}

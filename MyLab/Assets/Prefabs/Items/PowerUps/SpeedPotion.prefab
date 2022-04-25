@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33552534451620232}
   - component: {fileID: 23009684181448838}
   - component: {fileID: 2102655299924933753}
-  - component: {fileID: 668771667509976674}
+  - component: {fileID: -8399720392341304716}
   m_Layer: 0
-  m_Name: Potion_01
+  m_Name: SpeedPotion
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3181021, y: 0.57080644, z: 0.2754844}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &668771667509976674
+--- !u!114 &-8399720392341304716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,21 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744407837024274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf5d6811c045fd4ea604fde89346f83, type: 3}
+  m_Script: {fileID: 11500000, guid: c27e5b4ce95d9c2419ccdcb4f28f6789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powUpTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PowerUps, Assembly-CSharp
-        m_MethodName: PowerUpSpd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  powIndicator: {fileID: 0}
+  powerUp: {fileID: 0}
+  spinAndBounce: {fileID: 0}

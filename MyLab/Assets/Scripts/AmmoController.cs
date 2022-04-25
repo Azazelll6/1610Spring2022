@@ -1,28 +1,29 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class AmmoController : MonoBehaviour
 {
     public PlayerController player;
-    //public List<GameObject> ammoPrefab;
+    public GameObject[] ammoPrefab;
     public float spd;
-    public float ammoTTL;
+    private float ammoTTL;
+    private int dmgToGive;
+    private float knockStrength;
 
-    public int dmgToGive;
-
-    public float knockStrength;
+    public PlayerData playerData;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
+
+        dmgToGive = playerData.damage;
+        ammoTTL = playerData.ammoLife;
+        spd = playerData.ammoSpeed;
+        knockStrength = playerData.bounceDistance;
     }
 
     void Update()
     {
-       //int index = Random.Range(0, ammoPrefab.Count);
+        //int index = Random.Range(0, ammoPrefab.Count);
         transform.Translate(Vector3.forward * (spd * Time.deltaTime));
         //Destroy ammo after (ammoTTL) sec
         ammoTTL -= Time.deltaTime;
@@ -39,7 +40,7 @@ public class AmmoController : MonoBehaviour
         //Destroy Karen on hit
         if (other.gameObject.CompareTag("Karen"))
         {
-            other.gameObject.GetComponent<EnemyHealthManager>().DmgEnemy(dmgToGive);
+            other.gameObject.GetComponent<EnemyController>().DmgEnemy(dmgToGive);
             
             Rigidbody enemyRigidbody = other.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = other.gameObject.transform.position - player.transform.position;

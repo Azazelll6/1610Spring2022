@@ -397,7 +397,6 @@ GameObject:
   - component: {fileID: 5678156042060155670}
   - component: {fileID: 8305465676699131286}
   - component: {fileID: 3573709069994630448}
-  - component: {fileID: 8768036781955388758}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -488,11 +487,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 0
-  verticalInput: 0
-  horizontalInput: 0
   gameOver: 0
-  moveSpeed: 10
   weaponController: {fileID: 3573709069994630448}
+  playerData: {fileID: 11400000, guid: e057b03640d92bc46995685dcc28f0ec, type: 2}
 --- !u!114 &3573709069994630448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,23 +504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFiring: 0
   ammo: {fileID: 4632523263152551917, guid: 10d25933610222845ad3760a855829c4, type: 3}
-  reloadTime: 1.5
-  shotCounter: 0
-  ammoSpd: 25
+  playerData: {fileID: 11400000, guid: e057b03640d92bc46995685dcc28f0ec, type: 2}
   fireSpawn: {fileID: 3995519496905078978}
---- !u!114 &8768036781955388758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284329033225235056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81aaddc3c40da374a8e4c5210343eec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
 --- !u!1 &4284329033225235060
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: TankyEnemy
   m_EditorClassIdentifier: 
   enemyName: TankyEnemy
-  description: TankyHighdmgSlowspeed
+  description: HighHpLowSpdHighDmg
+  enemyPrefab:
+  - {fileID: 200110901872572178, guid: f67b51f9d82f23242b33f992c9331e26, type: 3}
+  - {fileID: 2669317806314687444, guid: 9873636b3c547c348b2453251e7860c1, type: 3}
+  - {fileID: 77599524223420396, guid: 4a9216531de3dd147b31f791f1d38671, type: 3}
+  - {fileID: 4400220394555019590, guid: 07567f1571595a64597fbfdea0411be1, type: 3}
   health: 20
   speed: 4
-  damage: 3
-  bounceDistance: 10
+  damage: 5
+  bounceDistance: 0

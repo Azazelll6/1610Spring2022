@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 77599524223420394}
   - component: {fileID: 673544269901487189}
   - component: {fileID: 2040238547994007461}
-  - component: {fileID: 759521896724457408}
-  - component: {fileID: 556322765}
+  - component: {fileID: -6851742180688261773}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Karen
@@ -34,7 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4242129622431888188}
-  - {fileID: 1349731908407337009}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,7 +114,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &759521896724457408
+--- !u!114 &-6851742180688261773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,78 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77463683d8617c44ac5e2159498e76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 2350f625b29afe6458f5755f4f8827fc, type: 2}
---- !u!114 &556322765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77599524223420396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 145b17fc8b35d54429b491359565dae6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 2350f625b29afe6458f5755f4f8827fc, type: 2}
---- !u!1 &7537142119021905362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1349731908407337009}
-  - component: {fileID: 6659714343958004131}
-  - component: {fileID: 8390223445660871575}
-  m_Layer: 0
-  m_Name: DmgZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1349731908407337009
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537142119021905362}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.784, z: 0.6949997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 77599524223420392}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6659714343958004131
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537142119021905362}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.6}
-  m_Center: {x: 0, y: 0, z: -0.05}
---- !u!114 &8390223445660871575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537142119021905362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7060779321d96b42b8ddb4bc354f90f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmgToGive: 1
+  enemyData: {fileID: 11400000, guid: 0f330656862964d48a54be3046ce19c4, type: 2}
 --- !u!1001 &4242129622431492540
 PrefabInstance:
   m_ObjectHideFlags: 0

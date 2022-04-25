@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class WeaponController : MonoBehaviour
 {
@@ -11,17 +7,17 @@ public class WeaponController : MonoBehaviour
     //private GameManager gameManager;
     public AmmoController ammo;
 
-    public float reloadTime;
-    public float shotCounter;
-    public float ammoSpd;
+    public PlayerData playerData;
+    private float shotCounter;
+    private float ammoSpd;
+    private float reload;
+    
 
     public Transform fireSpawn;
 
     void Start()
     {
-
-        //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
+        reload = playerData.reloadTime;
     }
 
     private void Update()
@@ -33,7 +29,7 @@ public class WeaponController : MonoBehaviour
             shotCounter -= Time.fixedDeltaTime;
             if (shotCounter <= 0)
             {
-                shotCounter = reloadTime;//at end of counter reset to the fire rate value for next shot
+                shotCounter = reload;//at end of counter reset to the fire rate value for next shot
                 //Create bullet at the correct spawn point as a AmmoController with the correct
                 //properties instead of a GameObject
                 AmmoController newAmmo = Instantiate(ammo, fireSpawn.position, fireSpawn.rotation) as AmmoController;

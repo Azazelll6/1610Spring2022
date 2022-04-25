@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -10,26 +10,53 @@ public class EnemyController : MonoBehaviour
     private float takenKnockBack;
 
     private PlayerController player;
+
+    private int dmgToGive;
+    private int currentHealth;
+
     public EnemyData enemyData;
     void Start()
     {
         enemyRB = GetComponent<Rigidbody>();
         //give reference to the player game object
         player = FindObjectOfType<PlayerController>();
+        
+        dmgToGive = enemyData.damage;
 
-        moveSpeed = enemyData.speed;
-        takenKnockBack = enemyData.bounceDistance;
-    }
-
-    private void FixedUpdate()
-    {
-        //Move forward (towards player because of face player below)
-        enemyRB.velocity = (transform.forward.normalized * moveSpeed);
+        //define current health to public for initial spawn and private health for when just the player obj hits 0
+        currentHealth = enemyData.health;
     }
 
     private void Update()
     {
-        //face the player
-        transform.LookAt(player.transform.position);
+        moveSpeed = enemyData.speed;
+        takenKnockBack = enemyData.bounceDistance;
+        
+        //Move forward (towards player because of face player below)
+        enemyRB.velocity = (transform.forward.normalized * moveSpeed);
+        if (player != null)
+        {
+            //face the player
+            transform.LookAt(player.transform.position);
+        }
+        //Destroy on 0 health
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    //Deal damage to player
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerController>().DmgPlayer(dmgToGive);
+        }
+    }
+    //when the object is hit and takes damage take that damage from their health
+    public void DmgEnemy(int damage)
+    {
+        currentHealth -= damage;
     }
 }
