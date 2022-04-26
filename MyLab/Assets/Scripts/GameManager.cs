@@ -10,112 +10,188 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] powerUps;
-    public List<EnemyController> enemyController = new List<EnemyController>();
-    [SerializeField] private UnityEvent powUpTrigger;
+    public GameData gameData;
+    public bool isGameActive;
+    private int enemySpawnRate;
+    private int enemiesSpawned;
+    private int enemiesRemaining;
+    private int score;
+    private int difficulty = 1;
+    private int baseDifficultyIncrease;
+    private int wave;
+    public float timeElapsed = 0;
+    bool counterIsRunning;
+
+    private int powerUpSpawnRate;
+    public bool hasPowerUp;
+    private float powerUpDuration;
+    [SerializeField] private GameObject powIndicatorRandom;
+    [SerializeField] private GameObject powIndicatorSpd;
+    [SerializeField] private GameObject powIndicatorDmg;
     
-    private void OnTriggerEnter(Collider other)
+    public List<GameObject> enemyPrefabs;
+    public List<GameObject> powerUpPrefabs;
+    
+    // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
+    private void Start()
     {
-        if (other.CompareTag("Player"))
-        {
-            powUpTrigger.Invoke();
-        }
-        if (other.CompareTag("Karen"))
-        {
-            Destroy(gameObject);
-        }
+        StartGame();
+    }
+
+    public void StartGame()//(int difficulty)
+    {
+        enemySpawnRate = (gameData.enemySpawnRate / difficulty);
+        powerUpSpawnRate = (gameData.powerUpSpawnRate / difficulty);
         
+        isGameActive = true;
+        
+        StartCoroutine(SpawnPowerUp());
+        StartCoroutine(SpawnEnemy());
+        score = 0;
+        wave = 1;
+        enemiesSpawned = 0;
+        //UpdateScore(0);
+        counterIsRunning = true;
+        
+        //titleScreen.SetActive(false);
     }
     
+    private void Update()
+    {
+
+        if (counterIsRunning)
+        {
+            if (enemiesRemaining > 0)
+            {
+                timeElapsed += Time.deltaTime;
+                //DisplayTime(timeElapsed);
+                //DisplayEnemyCount(enemiesRemaining);
+            }
+            else
+            {
+                PauseForNextWave();
+                enemiesRemaining = 0;
+                counterIsRunning = false;
+            }
+        }
+    }
+
+    private void PauseForNextWave()
+    {
+        StopCoroutine(SpawnEnemy());
+        StopCoroutine(SpawnPowerUp());
+    }
+    /*
+    // Update score with value from enemy killed
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
+    }*/
+    
+    // While game is active spawn a random target
+    IEnumerator SpawnPowerUp()
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(powerUpSpawnRate);
+            int index = Random.Range(0, powerUpPrefabs.Count);
+
+            if (isGameActive)
+            {
+                Instantiate(powerUpPrefabs[index], RandomSpawnPosition(), powerUpPrefabs[index].transform.rotation);
+            }
+
+        }
+    }
+    
+    // Coroutine to count down powerup duration
+    IEnumerator PowerupCooldown()
+    {
+        yield return new WaitForSeconds(powerUpDuration);
+        hasPowerUp = false;
+    }
+    
+    public void RandomPowerUp()
+    {
+        hasPowerUp = true;
+        StartCoroutine(PowerupCooldown());
+        powIndicatorRandom.SetActive(true);
+        Debug.Log("Random Power Up Triggered");
+    } 
+    
+    public void SpdPowerUp()
+    {
+        hasPowerUp = true;
+        StartCoroutine(PowerupCooldown());
+        powIndicatorDmg.SetActive(true);
+        Debug.Log("Speed Power Up Triggered");
+    }
+    
+    public void DmgPowerUp()
+    {
+        hasPowerUp = true;
+        StartCoroutine(PowerupCooldown());
+        powIndicatorDmg.SetActive(true);
+        Debug.Log("Damage Power Up Triggered");
+    }
+    
+    // While game is active spawn a random enemy
+    // ReSharper disable Unity.PerformanceAnalysis
+    IEnumerator SpawnEnemy()
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(enemySpawnRate);
+            int index = Random.Range(0, enemyPrefabs.Count);
+
+            if (isGameActive && enemiesSpawned <= (baseDifficultyIncrease + wave + difficulty))
+            {
+                Instantiate(enemyPrefabs[index], RandomSpawnPosition(), enemyPrefabs[index].transform.rotation);
+                enemiesSpawned += 1;
+                Debug.Log("Total enemies spawned "+ enemiesSpawned);
+            }
+            if (isGameActive && enemiesRemaining == 0)
+            {
+                Instantiate(enemyPrefabs[index], RandomSpawnPosition(), enemyPrefabs[index].transform.rotation);
+                enemiesSpawned += 1;
+                Debug.Log("Total enemies spawned "+ enemiesSpawned);
+            }
+
+        }
+    }
+    
+    // Generate a random spawn position
+    Vector3 RandomSpawnPosition()
+    {
+        float spawnPosX = Random.Range(-45,45);
+        float spawnPosZ = Random.Range(-45,45);
+
+        Vector3 spawnPosition = new Vector3(spawnPosX,0, spawnPosZ);
+        return spawnPosition;
+
+    }
+    
+    // Stop game, bring up game over text and restart button
+    public void GameOver()
+    {
+        counterIsRunning = false;
+        //DisplayTime(-1);
+        //gameOverText.gameObject.SetActive(true);
+        //restartButton.gameObject.SetActive(true);
+        isGameActive = false;
+    }
+    // Restart game by reloading the scene
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     /*
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
     public Button restartButton;
-    public float timeRemaining = 60;
-
-    public List<GameObject> targetPrefabs;
-
-    private int score;
-    private float spawnRate = 1.5f;
-    public bool isGameActive;
-
-    private float spaceBetweenSquares = 2.5f;
-    private float minValueX = -3.75f; //  x value of the center of the left-most square
-    private float minValueY = -3.75f; //  y value of the center of the bottom-most square
-
-    public bool timerIsRunning = false;
-
-    // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
-    public void StartGame(int difficulty)
-    {
-        spawnRate /= difficulty;
-        isGameActive = true;
-        StartCoroutine(SpawnTarget());
-        score = 0;
-        UpdateScore(0);
-        timerIsRunning = true;
-        titleScreen.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (timerIsRunning)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
-            }
-            else
-            {
-                GameOver();
-                timeRemaining = 0;
-                timerIsRunning = false;
-            }
-        }
-    }
-
-    // While game is active spawn a random target
-    IEnumerator SpawnTarget()
-    {
-        while (isGameActive)
-        {
-            yield return new WaitForSeconds(spawnRate);
-            int index = Random.Range(0, targetPrefabs.Count);
-
-            if (isGameActive)
-            {
-                Instantiate(targetPrefabs[index], RandomSpawnPosition(), targetPrefabs[index].transform.rotation);
-            }
-
-        }
-    }
-
-    // Generate a random spawn position based on a random index from 0 to 3
-    Vector3 RandomSpawnPosition()
-    {
-        float spawnPosX = minValueX + (RandomSquareIndex() * spaceBetweenSquares);
-        float spawnPosY = minValueY + (RandomSquareIndex() * spaceBetweenSquares);
-
-        Vector3 spawnPosition = new Vector3(spawnPosX, spawnPosY, 0);
-        return spawnPosition;
-
-    }
-
-    // Generates random square index from 0 to 3, which determines which square the target will appear in
-    int RandomSquareIndex()
-    {
-        return Random.Range(0, 4);
-    }
-
-    // Update score with value from target clicked
-    public void UpdateScore(int scoreToAdd)
-    {
-        score += scoreToAdd;
-        scoreText.text = "Score: " + score;
-    }
 
     public void DisplayTime(float timeToDisplay)
     {
@@ -123,21 +199,5 @@ public class GameManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         timeText.text = "Time Remaining: " + (string.Format("{0:00}:{1:00}", minutes, seconds));
-    }
-
-    // Stop game, bring up game over text and restart button
-    public void GameOver()
-    {
-        timerIsRunning = false;
-        DisplayTime(-1);
-        gameOverText.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(true);
-        isGameActive = false;
-    }
-
-    // Restart game by reloading the scene
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }*/
 }

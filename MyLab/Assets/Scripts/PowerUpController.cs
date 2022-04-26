@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class PowerUpAction : MonoBehaviour
+public class PowerUpController : MonoBehaviour
 {
-    [SerializeField] private GameObject powIndicator;
-
+    [SerializeField] private UnityEvent powUpTrigger;
+    
     public PowerUps powerUp;
     public SpinAndBounce spinAndBounce;
     
@@ -19,14 +20,8 @@ public class PowerUpAction : MonoBehaviour
     void Start()
     {
         powDescription = powerUp.powFunction;
-
     }
     
-    public void PowerUpIndicator()
-    {
-        powIndicator.SetActive(true);
-        Debug.Log(powDescription);
-    }
     void Update()
     {
         spinSpeed = spinAndBounce.spinSpeed;
@@ -38,23 +33,16 @@ public class PowerUpAction : MonoBehaviour
         transform.position = new Vector3(transform.position.x, center + (Mathf.Sin(Time.time * freq) * amp), transform.position.z);
         
     }
-    // If Player collides with powerup, activate powerup
-    /*{
-        if (other.CompareTag("Powerup"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
-            //smokePartiicle.Play();
-            //hasPowerup = true;
-            //powerupIndicator.SetActive(true);
-            //StartCoroutine(PowerupCooldown());
+            powUpTrigger.Invoke();
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Karen"))
+        {
+            Destroy(gameObject);
         }
     }
-
-    // Coroutine to count down powerup duration
-    IEnumerator PowerupCooldown()
-    {
-        yield return new WaitForSeconds(powerUpDuration);
-        hasPowerup = false;
-        powerupIndicator.SetActive(false);
-    }*/
 }
