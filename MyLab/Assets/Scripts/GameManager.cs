@@ -23,11 +23,7 @@ public class GameManager : MonoBehaviour
     bool counterIsRunning;
 
     private int powerUpSpawnRate;
-    public bool hasPowerUp;
-    private float powerUpDuration;
-    [SerializeField] private GameObject powIndicatorRandom;
-    [SerializeField] private GameObject powIndicatorSpd;
-    [SerializeField] private GameObject powIndicatorDmg;
+
     
     public List<GameObject> enemyPrefabs;
     public List<GameObject> powerUpPrefabs;
@@ -52,7 +48,8 @@ public class GameManager : MonoBehaviour
         enemiesSpawned = 0;
         //UpdateScore(0);
         counterIsRunning = true;
-        
+        timeElapsed = 0;
+
         //titleScreen.SetActive(false);
     }
     
@@ -104,38 +101,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    
-    // Coroutine to count down powerup duration
-    IEnumerator PowerupCooldown()
-    {
-        yield return new WaitForSeconds(powerUpDuration);
-        hasPowerUp = false;
-    }
-    
-    public void RandomPowerUp()
-    {
-        hasPowerUp = true;
-        StartCoroutine(PowerupCooldown());
-        powIndicatorRandom.SetActive(true);
-        Debug.Log("Random Power Up Triggered");
-    } 
-    
-    public void SpdPowerUp()
-    {
-        hasPowerUp = true;
-        StartCoroutine(PowerupCooldown());
-        powIndicatorDmg.SetActive(true);
-        Debug.Log("Speed Power Up Triggered");
-    }
-    
-    public void DmgPowerUp()
-    {
-        hasPowerUp = true;
-        StartCoroutine(PowerupCooldown());
-        powIndicatorDmg.SetActive(true);
-        Debug.Log("Damage Power Up Triggered");
-    }
-    
+ 
     // While game is active spawn a random enemy
     // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator SpawnEnemy()

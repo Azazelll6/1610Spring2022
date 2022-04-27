@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
     public int damage;
     public float speed;
     public float ammoSpeed;
+    public float ammoSpinSpeed;
     public float ammoLife;
     public float reloadTime;
     public float bounceDistance;

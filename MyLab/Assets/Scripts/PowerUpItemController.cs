@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class PowerUpController : MonoBehaviour
+public class PowerUpItemController : MonoBehaviour
 {
-    [SerializeField] private UnityEvent powUpTrigger;
+
     
     public PowerUps powerUp;
     public SpinAndBounce spinAndBounce;
@@ -32,17 +32,5 @@ public class PowerUpController : MonoBehaviour
         transform.Rotate(Vector3.up * (spinSpeed * Time.deltaTime));
         transform.position = new Vector3(transform.position.x, center + (Mathf.Sin(Time.time * freq) * amp), transform.position.z);
         
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            powUpTrigger.Invoke();
-            Destroy(gameObject);
-        }
-        if (other.CompareTag("Karen"))
-        {
-            Destroy(gameObject);
-        }
     }
 }

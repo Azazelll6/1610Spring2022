@@ -95,9 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3bc435155ebcc4f9a4760b3ab64853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8305465676699131286, guid: fc01a3bb589cebc4aa10892db165243b, type: 3}
-  ammoPrefab: []
-  spd: 1
+  spd: 0
   playerData: {fileID: 11400000, guid: e057b03640d92bc46995685dcc28f0ec, type: 2}
 --- !u!65 &8125585557187860590
 BoxCollider:

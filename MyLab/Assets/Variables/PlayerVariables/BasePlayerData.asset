@@ -16,6 +16,7 @@ MonoBehaviour:
   damage: 1
   speed: 10
   ammoSpeed: 20
+  ammoSpinSpeed: 500
   ammoLife: 1.5
   reloadTime: 5
   bounceDistance: 50

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private string[] powerUpTags = {"DMGPowerUp", "MvSPDPowerUp", "FrPowerUp", "Heal"};
+    
     private Rigidbody enemyRB;
     private float moveSpeed;
     private float takenKnockBack;
@@ -44,6 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
     
     //Deal damage to player
@@ -53,10 +56,18 @@ public class EnemyController : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerController>().DmgPlayer(dmgToGive);
         }
+        if (((IList)powerUpTags).Contains(other.gameObject.tag))
+        {
+            Destroy(other.gameObject);
+        }
     }
     //when the object is hit and takes damage take that damage from their health
     public void DmgEnemy(int damage)
     {
         currentHealth -= damage;
     }
+}
+
+internal class HardSurfaceTags
+{
 }

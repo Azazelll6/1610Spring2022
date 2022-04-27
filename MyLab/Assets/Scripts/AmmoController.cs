@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class AmmoController : MonoBehaviour
 {
-    public PlayerController player;
-    public GameObject[] ammoPrefab;
+    private PlayerController player;
     public float spd;
+    private float spinSpeed;
     private float ammoTTL;
     private int dmgToGive;
     private float knockStrength;
@@ -15,15 +15,20 @@ public class AmmoController : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
 
-        dmgToGive = playerData.damage;
-        ammoTTL = playerData.ammoLife;
-        spd = playerData.ammoSpeed;
-        knockStrength = playerData.bounceDistance;
+
     }
 
     void Update()
     {
-        //int index = Random.Range(0, ammoPrefab.Count);
+        //lets the SO control the variables during game
+        dmgToGive = playerData.damage;
+        ammoTTL = playerData.ammoLife;
+        spd = playerData.ammoSpeed;
+        spinSpeed = playerData.ammoSpinSpeed;
+        knockStrength = playerData.bounceDistance;
+
+        
+        //transform.Rotate(Vector3.forward * (spinSpeed * Time.deltaTime));
         transform.Translate(Vector3.forward * (spd * Time.deltaTime));
         //Destroy ammo after (ammoTTL) sec
         ammoTTL -= Time.deltaTime;
@@ -31,9 +36,6 @@ public class AmmoController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        /*Same thing
-         Destroy(gameObject, ammoTTL);
-         */
     }
     private void OnCollisionEnter(Collision other)
     {

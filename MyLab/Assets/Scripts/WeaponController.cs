@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -5,7 +6,7 @@ public class WeaponController : MonoBehaviour
     public bool isFiring;
     
     //private GameManager gameManager;
-    public AmmoController ammo;
+    public AmmoController[] ammoPrefab;
 
     public PlayerData playerData;
     private float shotCounter;
@@ -18,9 +19,10 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         reload = playerData.reloadTime;
+        
     }
 
-    private void Update()
+    void Update()
     {
 
         if (isFiring)
@@ -29,11 +31,10 @@ public class WeaponController : MonoBehaviour
             shotCounter -= Time.fixedDeltaTime;
             if (shotCounter <= 0)
             {
-                shotCounter = reload;//at end of counter reset to the fire rate value for next shot
-                //Create bullet at the correct spawn point as a AmmoController with the correct
-                //properties instead of a GameObject
-                AmmoController newAmmo = Instantiate(ammo, fireSpawn.position, fireSpawn.rotation) as AmmoController;
-                newAmmo.spd = ammoSpd;
+                shotCounter = reload;
+                //throw a random ammo out
+                int index = Random.Range(0, ((ICollection) ammoPrefab).Count);
+                Instantiate(ammoPrefab[index], fireSpawn.position, fireSpawn.rotation);
             }
         }
         //setting fire rate to be ready to fire if we haven't fired since FR hit 0
@@ -45,4 +46,6 @@ public class WeaponController : MonoBehaviour
             }
         }
     }
+    
+    
 }

@@ -8,13 +8,13 @@ public class PowerUps : ScriptableObject
 {
     public string powFunction;
     public float duration;
-    public float moveSpeed;
-    public float fireRate;
+    public float moveSpeedBoost;
+    public float fireRateBoost;
     public float heal;
     public float healthBoost;
-    public float damage;
-    public float reload;
+    public float damageBoost;
+    public float reloadBoost;
     public float knockBack;
-    public float ammoSpeed;
+    public float ammoSpeedBoost;
     public bool pierce;
 }

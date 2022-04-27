@@ -6,8 +6,11 @@ TagManager:
   tags:
   - Karen
   - Wall
-  - PowerUp
   - Weapon
+  - DMGPowerUp
+  - MvSPDPowerUp
+  - FrPowerUp
+  - Heal
   layers:
   - Default
   - TransparentFX
