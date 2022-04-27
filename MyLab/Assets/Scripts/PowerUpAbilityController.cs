@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,7 @@ public class PowerUpAbilityController : MonoBehaviour
     
     public bool hasPowerUp;
     public bool pushHeal;
-    private float powerUpDuration;
+    private float powerUpDuration = 5;
 
     private void Start()
     {
@@ -26,10 +27,9 @@ public class PowerUpAbilityController : MonoBehaviour
     {
         if (hasPowerUp == false)
         {
-            powIndicator.SetActive(false);
-            powIndicator.SetActive(false);
-            powIndicator.SetActive(false);
-            powIndicator.SetActive(false);
+            powIndicatorMvSpeed.SetActive(false);
+            powIndicatorFrSpeed.SetActive(false);
+            powIndicatorDmg.SetActive(false);
         }
     }
 

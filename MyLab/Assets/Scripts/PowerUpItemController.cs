@@ -6,9 +6,6 @@ using UnityEngine.UIElements;
 
 public class PowerUpItemController : MonoBehaviour
 {
-
-    
-    public PowerUps powerUp;
     public SpinAndBounce spinAndBounce;
     
     private string powDescription;
@@ -19,7 +16,7 @@ public class PowerUpItemController : MonoBehaviour
 
     void Start()
     {
-        powDescription = powerUp.powFunction;
+
     }
     
     void Update()

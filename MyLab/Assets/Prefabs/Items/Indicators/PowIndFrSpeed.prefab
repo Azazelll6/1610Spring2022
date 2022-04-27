@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6725062137850768383}
   - component: {fileID: 6711192442359778387}
   - component: {fileID: 6703996945662134139}
+  - component: {fileID: 92143519}
   m_Layer: 0
-  m_Name: PowIndSPD
+  m_Name: PowIndFrSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &92143519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727475298085630281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27e5b4ce95d9c2419ccdcb4f28f6789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinAndBounce: {fileID: 11400000, guid: 922bc46bd9e36c84d88afb14ce2e260b, type: 2}
